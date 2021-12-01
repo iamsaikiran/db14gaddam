@@ -25,8 +25,13 @@ exports.mazda_create_post = async function(req, res) {
     document.model = req.body.model; 
     document.color = req.body.color;
     try{ 
-        let result = await document.save(); 
-        res.send(result); 
+        if(document.cost < 500 || document.cost>19999){
+            throw new TypeError("Please add cost in between 500 and 19999")
+        }
+        else{
+            let result = await document.save(); 
+            res.send(result);
+        } 
     } 
     catch(err){ 
         res.status(500); 
