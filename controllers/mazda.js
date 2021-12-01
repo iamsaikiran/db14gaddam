@@ -28,6 +28,9 @@ exports.mazda_create_post = async function(req, res) {
         if(document.cost < 500 || document.cost>19999){
             throw new TypeError("Please add cost in between 500 and 19999")
         }
+        else if(document.model.length<=0){
+            throw new TypeError("Model name is Empty")
+        }
         else{
             let result = await document.save(); 
             res.send(result);
